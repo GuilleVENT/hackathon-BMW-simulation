@@ -41,13 +41,48 @@ var points = [
 	],
 	[
 		[831, 451],
-		[508, 452],
-		[135, 456]
+		[797, 431],
+		[818, 395]
 	],
 	[
-		[135, 456],
-		[60, 391],
-		[35, 299]
+		[818, 395],
+		[840, 361],
+		[815, 333]
+	],
+	[
+		[815, 333],
+		[790, 309],
+		[805, 267]
+	],
+	[
+		[805, 267],
+		[808, 208],
+		[770, 222]
+	],
+	[	
+		[770, 222],
+		[732, 271],
+		[676, 309]
+	],
+	[
+		[676, 309],
+		[667, 347],
+		[706, 385]
+	],
+	[
+		[706, 385],
+		[761, 441],
+		[761, 494]
+	],
+	[	
+		[761, 494],
+		[795, 539],
+		[865, 537]
+	],
+	[
+		[865, 537],
+		[903, 525],
+		[934, 515]
 	]
 ];
 
@@ -121,17 +156,20 @@ var circle = svg.append("circle")
 	.attr("transform", "translate(" + points[0][0] + ")");
 
 
-transition(0, console.log)();
+transition(false, console.log)();
 
-function transition(pathIndex, callback) {
+function transition(loop, callback, pathIndex) {
+	if (pathIndex === 0 && !loop) return () => {};
+	if (!pathIndex) pathIndex = 0;
     let path = paths[pathIndex].node();
+    pathIndex = ++pathIndex % paths.length;
 	return function() {
 		callback(pathIndex);
 		circle.transition()
             .ease("linear")
 			.duration(path.getTotalLength() / speedFactor / speed_arr[pathIndex])
 			.attrTween("transform", translateAlong(path))
-			.each("end", transition(++pathIndex % paths.length, callback));
+			.each("end", transition(loop, callback, pathIndex));
 	}
 }
 
