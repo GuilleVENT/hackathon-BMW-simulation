@@ -83,6 +83,9 @@ var points = [
 		[865, 537],
 		[903, 525],
 		[934, 515]
+	],
+	[
+		[934, 515]
 	]
 ];
 
@@ -126,7 +129,7 @@ var speed_arr = [
 
 var svg = d3.select("#track").append("svg")
 	.attr("width", 980)
-	.attr("height", 500);
+	.attr("height", 575);
 
 var paths = points.map(points =>
 	svg.append("path")
