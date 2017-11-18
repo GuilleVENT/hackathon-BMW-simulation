@@ -2,16 +2,24 @@
 <html>
 <head>
 	<title>Hackantrieb</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="speedometer.css">
 </head>
 <body>
 	<button id="start" onclick="start()">Start</button>
 	<div id="track"></div>
-	<div id="cockpit">
-		<span id="speed">0</span><span> km/h</span>
-	</div>
+	<p id="cockpit">
+		<span id="speedometer"></span>
+
+		<span>Gear: </span><span id="gear">1</span>
+	</p>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+	<script type="text/javascript" src="http://iop.io/js/vendor/polymer/PointerEvents/pointerevents.js"></script>
+    <script type="text/javascript" src="http://iop.io/js/vendor/polymer/PointerGestures/pointergestures.js"></script>
+    <script type="text/javascript" src="http://iop.io/js/iopctrl.js"></script>
+
+	<script type="text/javascript" src="speedometer.js"></script>
 	<script type="text/javascript" src="magic.js"></script>
 </body>
 </html>
