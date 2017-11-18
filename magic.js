@@ -42,14 +42,15 @@ var circle = svg.append("circle")
     .attr("transform", "translate(" + points[0][0] + ")");
 
 
-transition(0)();
+transition(0, console.log)();
 
-function transition(pathIndex) {
+function transition(pathIndex, callback) {
     return function() {
+        callback(pathIndex);
         circle.transition()
             .duration(10000)
             .attrTween("transform", translateAlong(paths[pathIndex].node()))
-            .each("end", transition(++pathIndex % paths.length));
+            .each("end", transition(++pathIndex % paths.length, callback));
     }
 }
 
