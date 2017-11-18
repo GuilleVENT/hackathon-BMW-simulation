@@ -1,3 +1,5 @@
+var playAudio = AudioManager(["audio/test.mp3", "audio/test2.mp3"]);
+
 var points = [
 	[
 		[35, 299],
