@@ -50,11 +50,13 @@ var circle = svg.append("circle")
 transition(0, console.log)();
 
 function transition(pathIndex, callback) {
+    let path = paths[pathIndex].node();
 	return function() {
 		callback(pathIndex);
 		circle.transition()
-			.duration(10000)
-			.attrTween("transform", translateAlong(paths[pathIndex].node()))
+            .ease("linear")
+			.duration(path.getTotalLength() / 0.1)
+			.attrTween("transform", translateAlong(path))
 			.each("end", transition(++pathIndex % paths.length, callback));
 	}
 }
