@@ -92,7 +92,7 @@ var points = [
 ];
 
 // smaller: slower
-let speedFactor = 0.001;
+let speedFactor = 0.008;
 
 
 var speed_arr = [
@@ -155,7 +155,7 @@ points.forEach(points => {
 			return "translate(" + d + ")"; 
 		})
 		.filter(function(d, i) {
-			return i == 0;
+			return i === 0;
 		})
 		.attr("r", 9)
 		.attr("class", "stopPoint");
@@ -165,7 +165,10 @@ var circle = svg.append("circle")
 	.attr("r", 15)
 	.attr("transform", "translate(" + points[0][0] + ")");
 
-transition(false, id => !adjustTacho((id - 1 >= 0) ? speed_arr[id - 1] : 0, speed_arr[id]) && (id === 2 || id === 6) && playAudio())();
+transition(false, id => {
+	adjustTacho((id - 1 >= 0) ? speed_arr[id - 1] : 0, speed_arr[id]);
+	if (id === 2 || id === 6) playAudio();
+})();
 
 function transition(loop, callback, pathIndex) {
 	if (pathIndex === 0 && !loop) return () => {};
