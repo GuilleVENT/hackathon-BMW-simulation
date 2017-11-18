@@ -87,7 +87,8 @@ var speed_arr = [
  
 
 var svg = d3.select("body").append("svg")
-	.attr("width", 960)
+	.attr("id", "track")
+	.attr("width", 980)
 	.attr("height", 500);
 
 var paths = points.map(points =>
@@ -109,12 +110,12 @@ points.forEach(points => {
 		.filter(function(d, i) {
 			return i == 0;
 		})
-		.attr("r", 7)
+		.attr("r", 9)
 		.attr("class", "stopPoint");
 });
 
 var circle = svg.append("circle")
-	.attr("r", 13)
+	.attr("r", 15)
 	.attr("transform", "translate(" + points[0][0] + ")");
 
 

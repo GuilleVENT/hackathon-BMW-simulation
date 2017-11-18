@@ -1,16 +1,27 @@
+body {
+  text-align: center;
+}
+
+#track {
+  display: inline-block;
+}
+
 path {
   fill: none;
   stroke: #000;
   stroke-width: 15px;
 }
 
+/* position */
 circle {
-  fill: steelblue;
+  fill: #2C90FE;
   stroke: #fff;
-  stroke-width: 7px;
+  stroke-width: 5px;
 }
 
-.stopPoint {
+/* stop points */
+circle.stopPoint {
   fill: black;
-  stroke-width: 0;
+  stroke: #fff;
+  stroke-width: 3px;
 }
