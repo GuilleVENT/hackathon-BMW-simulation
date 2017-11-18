@@ -1,3 +1,5 @@
+var playAudio = AudioManager(["audio/test.mp3", "audio/test2.mp3"]);
+
 var points = [
 	[
 		[35, 299],
@@ -59,7 +61,7 @@ var points = [
 		[808, 208],
 		[770, 222]
 	],
-	[	
+	[
 		[770, 222],
 		[732, 271],
 		[676, 309]
@@ -74,7 +76,7 @@ var points = [
 		[761, 441],
 		[761, 494]
 	],
-	[	
+	[
 		[761, 494],
 		[795, 539],
 		[865, 537]
@@ -158,21 +160,19 @@ var circle = svg.append("circle")
 	.attr("r", 15)
 	.attr("transform", "translate(" + points[0][0] + ")");
 
-
-transition(false, console.log)();
+transition(false, id => (id === 2 || id === 6) && playAudio())();
 
 function transition(loop, callback, pathIndex) {
 	if (pathIndex === 0 && !loop) return () => {};
 	if (!pathIndex) pathIndex = 0;
     let path = paths[pathIndex].node();
-    pathIndex = ++pathIndex % paths.length;
 	return function() {
 		callback(pathIndex);
 		circle.transition()
             .ease("linear")
 			.duration(path.getTotalLength() / speedFactor / speed_arr[pathIndex])
 			.attrTween("transform", translateAlong(path))
-			.each("end", transition(loop, callback, pathIndex));
+			.each("end", transition(loop, callback, ++pathIndex % paths.length));
 	}
 }
 
@@ -215,4 +215,16 @@ function speed2gear(speed){
         gear_int = 6 
     } 
     return gear_int 
+}
+
+
+function AudioManager(files) {
+	let fileIndex = 0;
+	let audio = new Audio(files[fileIndex]);
+	return function() {
+		audio.play();
+		try {
+            audio = new Audio(files[++fileIndex]);
+		} catch (e) {}
+	}
 }
