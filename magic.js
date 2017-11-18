@@ -119,7 +119,8 @@ points.forEach(points => {
 		.filter(function(d, i) {
 			return i == 0;
 		})
-		.attr("r", 4);
+		.attr("r", 7)
+		.attr("class", "stopPoint");
 });
 
 var circle = svg.append("circle")
@@ -135,7 +136,7 @@ function transition(pathIndex, callback) {
 		callback(pathIndex);
 		circle.transition()
             .ease("linear")
-			.duration(path.getTotalLength() / 0.01 / speed_arr[pathIndex])
+			.duration(path.getTotalLength() / 0.008 / speed_arr[pathIndex])
 			.attrTween("transform", translateAlong(path))
 			.each("end", transition(++pathIndex % paths.length, callback));
 	}
