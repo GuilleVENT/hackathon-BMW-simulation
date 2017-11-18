@@ -1,4 +1,6 @@
-var playAudio = AudioManager(["audio/test.mp3", "audio/test2.mp3"]);
+var playAudio = AudioManager([
+	"audio/point2.mp3", "audio/point4.mp3", "audio/point7.mp3", "audio/point10.mp3", "audio/point11.mp3"
+]);
 
 var points = [
 	[
@@ -93,9 +95,9 @@ let speedFactor = 0.001;
 var speeds = [
 	65,
 	75,
-	70,
 	85,
-	80,
+	90,
+	85,
 	100,
 	85,
 	45,
@@ -143,7 +145,7 @@ var circle = svg.append("circle")
 
 var start = transition(false, id => {
 	adjustTacho((id - 1 >= 0) ? speeds[id - 1] : 0, speeds[id]);
-	if (id === 2 || id === 6) playAudio();
+	if (id === 2 || id === 4 || id === 7 || id === 10 || id === 11) playAudio();
 });
 
 function transition(loop, callback, pathIndex) {
