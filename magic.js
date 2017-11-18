@@ -119,17 +119,20 @@ var circle = svg.append("circle")
 	.attr("transform", "translate(" + points[0][0] + ")");
 
 
-transition(0, console.log)();
+transition(false, console.log)();
 
-function transition(pathIndex, callback) {
+function transition(loop, callback, pathIndex) {
+	if (pathIndex === 0 && !loop) return () => {};
+	if (!pathIndex) pathIndex = 0;
     let path = paths[pathIndex].node();
+    pathIndex = ++pathIndex % paths.length;
 	return function() {
 		callback(pathIndex);
 		circle.transition()
             .ease("linear")
 			.duration(path.getTotalLength() / 0.008 / speed_arr[pathIndex])
 			.attrTween("transform", translateAlong(path))
-			.each("end", transition(++pathIndex % paths.length, callback));
+			.each("end", transition(loop, callback, pathIndex));
 	}
 }
 
