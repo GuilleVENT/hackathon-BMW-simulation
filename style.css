@@ -8,14 +8,6 @@ body {
   display: inline-block;
 }
 
-#start {
-  border-radius: 100%;
-  width: 100px;
-  height: 100px;
-  font-weight: bold;
-  font-size: large;
-}
-
 path.trackPart {
   fill: none;
   stroke: darkgrey;
@@ -32,4 +24,31 @@ circle.stopPoint {
   fill: black;
   stroke: #fff;
   stroke-width: 3px;
+}
+
+
+/*  COCKPIT */
+
+#cockpit {
+  vertical-align: middle;
+}
+
+#cockpit > * {
+  display: inline-block;
+  line-height: 300px;
+  height: 300px;
+  overflow: hidden;
+}
+
+#cockpit > * > * {
+  line-height: auto;
+  height: auto;
+}
+
+#start {
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  font-weight: bold;
+  font-size: large;
 }
