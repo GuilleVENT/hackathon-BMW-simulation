@@ -24,17 +24,17 @@ var segDisplay = iopctrl.segdisplay()
     .negative(false)
     .decimals(0);
 
-svg.append("g")
-    .attr("class", "segdisplay")
-    .attr("transform", "translate(130, 200)")
-    .call(segDisplay);
+// svg.append("g")
+//     .attr("class", "segdisplay")
+//     .attr("transform", "translate(130, 200)")
+//     .call(segDisplay);
 
 svg.append("g")
     .attr("class", "gauge")
     .call(gauge);
 
 function adjustSpeed(speed) {
-	segDisplay.value(speed);
+	// segDisplay.value(speed);
 	gauge.value(speed);	
 }
 
