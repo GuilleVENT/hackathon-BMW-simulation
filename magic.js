@@ -159,17 +159,17 @@ var circle = svg.append("circle")
 	.attr("transform", "translate(" + points[0][0] + ")");
 
 
-transition(false, console.log)();
+transition(false, adjustTacho)();
 
 function transition(loop, callback, pathIndex) {
 	if (pathIndex === 0 && !loop) return () => {};
 	if (!pathIndex) pathIndex = 0;
-    let path = paths[pathIndex].node();
-    pathIndex = ++pathIndex % paths.length;
+		let path = paths[pathIndex].node();
+		pathIndex = ++pathIndex % paths.length;
 	return function() {
-		callback(pathIndex);
+		callback((pathIndex - 1 >= 0) ? speed_arr[pathIndex - 1] : 0, speed_arr[pathIndex]);
 		circle.transition()
-            .ease("linear")
+						.ease("linear")
 			.duration(path.getTotalLength() / speedFactor / speed_arr[pathIndex])
 			.attrTween("transform", translateAlong(path))
 			.each("end", transition(loop, callback, pathIndex));
@@ -190,29 +190,39 @@ function translateAlong(path) {
 
 
 for (i = 0 ; i<speed_arr.length ;i++){ 
-    //console.log(' - - - - - - - -'); 
-    //console.log('  Time: ', i+1); 
-    //console.log(' Speed: ', speed_arr[i]); 
-    
-    var gear 
-    gear = speed2gear(speed_arr[i]); 
-    
-    //console.log('  Gear: ', gear) 
-    
+		//console.log(' - - - - - - - -'); 
+		//console.log('  Time: ', i+1); 
+		//console.log(' Speed: ', speed_arr[i]); 
+		
+		var gear 
+		gear = speed2gear(speed_arr[i]); 
+		
+		//console.log('  Gear: ', gear) 
+}
 
+function adjustTacho(old_speed, new_speed) {
+	$('#speed').prop('Counter', old_speed).animate({
+		Counter: new_speed
+	}, {
+		duration: 1000,
+		easing: 'swing',
+		step: function (now) {
+			$('#speed').text(Math.ceil(now));
+		}
+	});
 }
 
 
 
  
 function speed2gear(speed){ 
-    var gear_float = speed / 20  
-    var gear_int = Math.ceil(gear_float) 
-    if ( gear_int < 1 ) { 
-        gear_int = 'N'; 
-    } 
-    if ( gear_int > 6) { 
-        gear_int = 6 
-    } 
-    return gear_int 
+		var gear_float = speed / 20  
+		var gear_int = Math.ceil(gear_float) 
+		if ( gear_int < 1 ) { 
+				gear_int = 'N'; 
+		} 
+		if ( gear_int > 6) { 
+				gear_int = 6 
+		} 
+		return gear_int 
 }
