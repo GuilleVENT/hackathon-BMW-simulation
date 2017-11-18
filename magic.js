@@ -49,10 +49,7 @@ function transition(pathIndex) {
         circle.transition()
             .duration(10000)
             .attrTween("transform", translateAlong(paths[pathIndex].node()))
-            .each("end", () => {
-                console.log(pathIndex);
-                transition(++pathIndex % paths.length);
-            });
+            .each("end", transition(++pathIndex % paths.length));
     }
 }
 
