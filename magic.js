@@ -92,7 +92,7 @@ var points = [
 ];
 
 // smaller: slower
-let speedFactor = 0.008;
+let speedFactor = 0.001;
 
 
 var speed_arr = [
@@ -141,6 +141,7 @@ var svg = d3.select("#track").append("svg")
 var paths = points.map(points =>
 	svg.append("path")
 		.data([points])
+		.attr("class", "trackPart")
 		.attr("d", d3.svg.line()
 			.tension(0) // Catmull–Rom
 			.interpolate("cardinal")
@@ -163,10 +164,11 @@ points.forEach(points => {
 
 var circle = svg.append("circle")
 	.attr("r", 15)
+	.attr("class", "position")
 	.attr("transform", "translate(" + points[0][0] + ")");
 
 transition(false, id => {
-	adjustTacho((id - 1 >= 0) ? speed_arr[id - 1] : 0, speed_arr[id]);
+	adjustCockpit((id - 1 >= 0) ? speed_arr[id - 1] : 0, speed_arr[id]);
 	if (id === 2 || id === 6) playAudio();
 })();
 
@@ -208,31 +210,16 @@ for (i = 0 ; i<speed_arr.length ;i++){
 		//console.log('  Gear: ', gear) 
 }
 
-function adjustTacho(old_speed, new_speed) {
-	$('#speed').prop('Counter', old_speed).animate({
-		Counter: new_speed
-	}, {
-		duration: 1000,
-		easing: 'swing',
-		step: function (now) {
-			$('#speed').text(Math.ceil(now));
-		}
-	});
+function adjustCockpit(old_speed, new_speed) {
+	adjustSpeed(new_speed)
+	$('#gear').text(speed2gear(new_speed));
 }
 
 
 
  
-function speed2gear(speed){ 
-		var gear_float = speed / 20  
-		var gear_int = Math.ceil(gear_float) 
-		if ( gear_int < 1 ) { 
-				gear_int = 'N'; 
-		} 
-		if ( gear_int > 6) { 
-				gear_int = 6 
-		} 
-		return gear_int 
+function speed2gear(speed){
+	return Math.min(Math.max(Math.ceil(speed / 20), 1), 6);
 }
 
 

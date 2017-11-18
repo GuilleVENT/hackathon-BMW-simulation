@@ -8,23 +8,20 @@ body {
   display: inline-block;
 }
 
-path {
+path.trackPart {
   fill: none;
   stroke: darkgrey;
   stroke-width: 15px;
 }
 
-/* position */
-circle {
+circle.position {
   fill: #2C90FE;
   stroke: #fff;
-  stroke-width: 5px;
+  stroke-width: 3px;
 }
 
-/* stop points */
 circle.stopPoint {
   fill: black;
   stroke: #fff;
   stroke-width: 3px;
 }
-
