@@ -8,6 +8,14 @@ body {
   display: inline-block;
 }
 
+#start {
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  font-weight: bold;
+  font-size: large;
+}
+
 path {
   fill: none;
   stroke: darkgrey;

@@ -2,135 +2,111 @@ var playAudio = AudioManager(["audio/test.mp3", "audio/test2.mp3"]);
 
 var points = [
 	[
-		[35, 299],
-		[93, 198],
-		[198, 145]
+		[210, 379],
+		[183, 336],
+		[128, 335]
 	],
 	[
-		[198, 145],
-		[279, 155],
-		[339, 194]
+		[128, 335],
+		[57, 328],
+		[17, 274]
 	],
 	[
-		[339, 194],
-		[402, 230],
-		[469, 240]
+		[17, 274],
+		[62, 190],
+		[179, 215]
 	],
 	[
-		[469, 240],
-		[546, 205],
-		[611, 128]
+		[179, 215],
+		[356, 235],
+		[361, 108]
 	],
 	[
-		[611, 128],
-		[661, 64],
-		[739, 32]
+		[361, 108],
+		[371, 44],
+		[449, 17]
 	],
 	[
-		[739, 32],
-		[865, 88],
-		[935, 205]
+		[449, 17],
+		[610, 138],
+        [655, 348]
 	],
 	[
-		[935, 205],
-		[945, 282],
-		[945, 368]
+		[655, 348],
+		[611, 409],
+		[541, 431]
 	],
 	[
-		[945, 368],
-		[901, 429],
-		[831, 451]
+		[541, 431],
+		[507, 411],
+		[528, 375]
 	],
 	[
-		[831, 451],
-		[797, 431],
-		[818, 395]
+		[528, 375],
+		[555, 333],
+		[530, 313]
 	],
 	[
-		[818, 395],
-		[840, 361],
-		[815, 333]
+		[530, 313],
+		[498, 285],
+		[500, 227]
 	],
 	[
-		[815, 333],
-		[790, 309],
-		[805, 267]
+		[500, 227],
+		[512, 174],
+		[482, 198]
 	],
 	[
-		[805, 267],
-		[808, 208],
-		[770, 222]
+		[482, 198],
+		[442, 241],
+		[386, 289]
 	],
 	[
-		[770, 222],
-		[732, 271],
-		[676, 309]
+		[386, 289],
+		[377, 330],
+		[416, 365]
 	],
 	[
-		[676, 309],
-		[667, 347],
-		[706, 385]
+		[416, 365],
+		[465, 408],
+		[471, 474]
 	],
 	[
-		[706, 385],
-		[761, 441],
-		[761, 494]
+		[471, 474],
+		[495, 529],
+		[575, 517]
 	],
 	[
-		[761, 494],
-		[795, 539],
-		[865, 537]
+		[575, 517],
+		[613, 500],
+		[644, 495]
 	],
 	[
-		[865, 537],
-		[903, 525],
-		[934, 515]
-	],
-	[
-		[934, 515]
+		[644, 495]
 	]
 ];
 
 // smaller: slower
-let speedFactor = 0.008;
+let speedFactor = 0.001;
 
 
-var speed_arr = [
-	60, 
-	65, 
-	55, 
-	60, 
-	68, 
-	90, 
-	120, 
-	95, 
-	75, 
+var speeds = [
+	65,
+	75,
+	70,
+	85,
+	80,
+	100,
+	85,
+	45,
 	40,
-	38, 
-	35, 
-	39, 
-	40,
-	33,
-	40,
-	58,
-	70
-	 /*
-	68, 
-	70, 
-	79, 
-	88, 
-	96, 
-	104, 
-	84.3, 
-	55, 
-	47, 
-	45, 
-	58, 
-	40, 
-	37, 
-	23, 
-	15, 
-	0 */
+	50,
+	30,
+	70,
+	55,
+	70,
+	60,
+	65
 ];
  
 
@@ -165,10 +141,10 @@ var circle = svg.append("circle")
 	.attr("r", 15)
 	.attr("transform", "translate(" + points[0][0] + ")");
 
-transition(false, id => {
-	adjustTacho((id - 1 >= 0) ? speed_arr[id - 1] : 0, speed_arr[id]);
+var start = transition(false, id => {
+	adjustTacho((id - 1 >= 0) ? speeds[id - 1] : 0, speeds[id]);
 	if (id === 2 || id === 6) playAudio();
-})();
+});
 
 function transition(loop, callback, pathIndex) {
 	if (pathIndex === 0 && !loop) return () => {};
@@ -178,7 +154,7 @@ function transition(loop, callback, pathIndex) {
 		callback(pathIndex);
 		circle.transition()
 		.ease("linear")
-		.duration(path.getTotalLength() / speedFactor / speed_arr[pathIndex])
+		.duration(path.getTotalLength() / speedFactor / speeds[pathIndex])
 		.attrTween("transform", translateAlong(path))
 		.each("end", transition(loop, callback, ++pathIndex % paths.length));
 	}
@@ -194,16 +170,16 @@ function translateAlong(path) {
 		};
 	};
 }
-//console.log(speed_arr.length) 
+//console.log(speeds.length)
 
 
-for (i = 0 ; i<speed_arr.length ;i++){ 
+for (i = 0 ; i<speeds.length ; i++){
 		//console.log(' - - - - - - - -'); 
 		//console.log('  Time: ', i+1); 
-		//console.log(' Speed: ', speed_arr[i]); 
+		//console.log(' Speed: ', speeds[i]);
 		
 		var gear 
-		gear = speed2gear(speed_arr[i]); 
+		gear = speed2gear(speeds[i]);
 		
 		//console.log('  Gear: ', gear) 
 }
