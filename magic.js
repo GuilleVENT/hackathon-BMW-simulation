@@ -1,54 +1,3 @@
-var points = [
-  [480, 200],
-  [580, 400],
-  [680, 100],
-  [780, 300],
-  [180, 300],
-  [280, 100],
-  [380, 400]
-];
-
-var svg = d3.select("body").append("svg")
-    .attr("width", 960)
-    .attr("height", 500);
-
-var path = svg.append("path")
-    .data([points])
-    .attr("d", d3.svg.line()
-    .tension(0) // Catmull–Rom
-    .interpolate("cardinal-closed"));
-
-svg.selectAll(".point")
-    .data(points)
-  .enter().append("circle")
-    .attr("r", 4)
-    .attr("transform", function(d) { return "translate(" + d + ")"; });
-
-var circle = svg.append("circle")
-    .attr("r", 13)
-    .attr("transform", "translate(" + points[0] + ")");
-
-transition();
-
-function transition() {
-  circle.transition()
-      .duration(10000)
-      .attrTween("transform", translateAlong(path.node()))
-      .each("end", transition);
-}
-
-// Returns an attrTween for translating along the specified path element.
-function translateAlong(path) {
-  var l = path.getTotalLength();
-  return function(d, i, a) {
-    return function(t) {
-      var p = path.getPointAtLength(t * l);
-      return "translate(" + p.x + "," + p.y + ")";
-    };
-  };
-}
-
-
 // test speed-array 
 
 speed_arr = [0, 
@@ -84,24 +33,32 @@ speed_arr = [0,
             ] 
  
 //console.log(speed_arr.length) 
- 
+
+
 for (i = 0 ; i<speed_arr.length ;i++){ 
     //console.log(' - - - - - - - -'); 
     //console.log('  Time: ', i+1); 
     //console.log(' Speed: ', speed_arr[i]); 
-    var gear = speed2gear(speed_arr[i]); 
-    if ( gear < 1 ) { 
-        gear = 'N'; 
-    } 
-    if ( gear > 6) { 
-        gear = 6 
-    } 
+    
+    var gear 
+    gear = speed2gear(speed_arr[i]); 
+    
     //console.log('  Gear: ', gear) 
-} 
- 
+    
+
+}
+
+
+
  
 function speed2gear(speed){ 
     var gear_float = speed / 20  
     var gear_int = Math.ceil(gear_float) 
+    if ( gear_int < 1 ) { 
+        gear_int = 'N'; 
+    } 
+    if ( gear_int > 6) { 
+        gear_int = 6 
+    } 
     return gear_int 
 } 
