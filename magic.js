@@ -51,6 +51,9 @@ var points = [
 	]
 ];
 
+// smaller: slower
+let speedFactor = 0.001;
+
 
 var speed_arr = [
 	40, 
@@ -86,8 +89,7 @@ var speed_arr = [
 ];
  
 
-var svg = d3.select("body").append("svg")
-	.attr("id", "track")
+var svg = d3.select("#track").append("svg")
 	.attr("width", 980)
 	.attr("height", 500);
 
@@ -127,7 +129,7 @@ function transition(pathIndex, callback) {
 		callback(pathIndex);
 		circle.transition()
             .ease("linear")
-			.duration(path.getTotalLength() / 0.008 / speed_arr[pathIndex])
+			.duration(path.getTotalLength() / speedFactor / speed_arr[pathIndex])
 			.attrTween("transform", translateAlong(path))
 			.each("end", transition(++pathIndex % paths.length, callback));
 	}

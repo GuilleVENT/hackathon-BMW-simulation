@@ -2,13 +2,15 @@ body {
   text-align: center;
 }
 
+/* TRACK */
+
 #track {
   display: inline-block;
 }
 
 path {
   fill: none;
-  stroke: #000;
+  stroke: darkgrey;
   stroke-width: 15px;
 }
 
@@ -25,3 +27,4 @@ circle.stopPoint {
   stroke: #fff;
   stroke-width: 3px;
 }
+
