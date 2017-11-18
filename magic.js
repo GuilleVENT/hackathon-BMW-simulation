@@ -72,7 +72,6 @@ function translateAlong(path) {
 	};
 }
 
-
 // test speed-array 
 
 speed_arr = [0, 
@@ -108,24 +107,32 @@ speed_arr = [0,
             ] 
  
 //console.log(speed_arr.length) 
- 
+
+
 for (i = 0 ; i<speed_arr.length ;i++){ 
     //console.log(' - - - - - - - -'); 
     //console.log('  Time: ', i+1); 
     //console.log(' Speed: ', speed_arr[i]); 
-    var gear = speed2gear(speed_arr[i]); 
-    if ( gear < 1 ) { 
-        gear = 'N'; 
-    } 
-    if ( gear > 6) { 
-        gear = 6 
-    } 
+    
+    var gear 
+    gear = speed2gear(speed_arr[i]); 
+    
     //console.log('  Gear: ', gear) 
-} 
- 
+    
+
+}
+
+
+
  
 function speed2gear(speed){ 
     var gear_float = speed / 20  
     var gear_int = Math.ceil(gear_float) 
+    if ( gear_int < 1 ) { 
+        gear_int = 'N'; 
+    } 
+    if ( gear_int > 6) { 
+        gear_int = 6 
+    } 
     return gear_int 
 }
