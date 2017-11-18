@@ -1,5 +1,3 @@
-var playAudio = AudioManager(["audio/test.mp3", "audio/test2.mp3"]);
-
 var points = [
 	[
 		[35, 299],
@@ -43,15 +41,56 @@ var points = [
 	],
 	[
 		[831, 451],
-		[508, 452],
-		[135, 456]
+		[797, 431],
+		[818, 395]
 	],
 	[
-		[135, 456],
-		[60, 391],
-		[35, 299]
+		[818, 395],
+		[840, 361],
+		[815, 333]
+	],
+	[
+		[815, 333],
+		[790, 309],
+		[805, 267]
+	],
+	[
+		[805, 267],
+		[808, 208],
+		[770, 222]
+	],
+	[
+		[770, 222],
+		[732, 271],
+		[676, 309]
+	],
+	[
+		[676, 309],
+		[667, 347],
+		[706, 385]
+	],
+	[
+		[706, 385],
+		[761, 441],
+		[761, 494]
+	],
+	[
+		[761, 494],
+		[795, 539],
+		[865, 537]
+	],
+	[
+		[865, 537],
+		[903, 525],
+		[934, 515]
+	],
+	[
+		[934, 515]
 	]
 ];
+
+// smaller: slower
+let speedFactor = 0.001;
 
 
 var speed_arr = [
@@ -86,12 +125,11 @@ var speed_arr = [
 	15, 
 	0 */
 ];
+ 
 
-
-var svg = d3.select("body").append("svg")
-	.attr("id", "track")
+var svg = d3.select("#track").append("svg")
 	.attr("width", 980)
-	.attr("height", 500);
+	.attr("height", 575);
 
 var paths = points.map(points =>
 	svg.append("path")
@@ -130,7 +168,7 @@ function transition(loop, callback, pathIndex) {
 		callback(pathIndex);
 		circle.transition()
             .ease("linear")
-			.duration(path.getTotalLength() / 0.003 / speed_arr[pathIndex])
+			.duration(path.getTotalLength() / speedFactor / speed_arr[pathIndex])
 			.attrTween("transform", translateAlong(path))
 			.each("end", transition(loop, callback, ++pathIndex % paths.length));
 	}
