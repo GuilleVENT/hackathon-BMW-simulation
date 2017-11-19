@@ -1,6 +1,8 @@
 var playAudio = AudioManager([
-	"audio/point2.mp3", "audio/point4.mp3", "audio/point7.mp3", "audio/point10.mp3", "audio/point11.mp3"
+    "audio/welcome.mp3", "audio/speed2.mp3", "audio/speed3.mp3", "audio/speed4.mp3", "audio/speed5.mp3",
+	"audio/speed6.mp3", "audio/speed7.mp3", "audio/np.mp3"
 ]);
+
 
 var points = [
 	[
@@ -89,26 +91,26 @@ var points = [
 ];
 
 // smaller: slower
-let speedFactor = 0.0005;
+let speedFactor = 0.001;
 
 
 
 var speeds = [
 	65,
+	70,
 	75,
+	70,
 	85,
+	105,
 	90,
-	85,
-	100,
-	85,
 	45,
 	40,
 	50,
-	30,
+	25,
 	70,
 	55,
-	70,
-	60,
+	75,
+	55,
 	65,
 	0
 ];
@@ -149,7 +151,7 @@ var circle = svg.append("circle")
 
 var start = transition(false, id => {
 	adjustCockpit((id - 1 >= 0) ? speeds[id - 1] : 0, speeds[id]);
-	if (id === 2 || id === 4 || id === 7 || id === 10 || id === 11) playAudio();
+	if (id === 1 || id === 4 || id === 6 || id === 8 || id === 10 || id === 11 || id === 13 || id === 16) playAudio();
 });
 
 function transition(loop, callback, pathIndex) {
