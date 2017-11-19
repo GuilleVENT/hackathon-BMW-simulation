@@ -199,8 +199,21 @@ for (i = 0 ; i<speeds.length ; i++){
 
 function adjustCockpit(old_speed, new_speed) {
 	adjustSpeed(new_speed)
+	adjustGear(speed2gear(old_speed), speed2gear(new_speed));
 	$('#gear').text(speed2gear(new_speed));
 }
+
+function adjustGear(old_gear, new_gear) {
+		$('#gear').prop('Counter', old_gear).animate({
+			Counter: new_gear
+		}, {
+			duration: 500,
+			easing: 'swing',
+			step: function (now) {
+				$('#gear').text(Math.ceil(now));
+			}
+		});
+  }
 
 
 
