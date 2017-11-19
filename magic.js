@@ -91,7 +91,7 @@ var points = [
 ];
 
 // smaller: slower
-let speedFactor = 0.0005;
+let speedFactor = 0.001;
 
 
 
