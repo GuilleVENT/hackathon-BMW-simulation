@@ -55,7 +55,7 @@ circle.stopPoint {
 }
 
 #cockpit > * > * {
-  line-height: auto;
+  line-height: initial;
   height: auto;
 }
 
@@ -65,4 +65,14 @@ circle.stopPoint {
   height: 100px;
   font-weight: bold;
   font-size: large;
+}
+
+#gear {
+  padding: 30px 35px 70px;
+  background: #9D0019 url(gearLabel.png) no-repeat bottom center;
+  border-radius: 7px;
+  font-size: 50px;
+  color: white;
+  border: 5px solid black;
+  font-family: 'Roboto Slab', serif;
 }
