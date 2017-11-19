@@ -89,7 +89,7 @@ var points = [
 ];
 
 // smaller: slower
-let speedFactor = 0.001;
+let speedFactor = 0.0005;
 
 
 
@@ -138,7 +138,7 @@ points.forEach(points => {
 		.filter(function(d, i) {
 			return i === 0;
 		})
-		.attr("r", 9)
+		.attr("r", 7)
 		.attr("class", "stopPoint");
 });
 

@@ -1,5 +1,18 @@
 body {
   text-align: center;
+   background: url(background.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+*:focus {
+    outline: none;
 }
 
 /* TRACK */
@@ -10,19 +23,19 @@ body {
 
 path.trackPart {
   fill: none;
-  stroke: darkgrey;
-  stroke-width: 15px;
+  stroke: #2C90FE;
+  stroke-width: 17px;
 }
 
 circle.position {
-  fill: #2C90FE;
+  fill: black;
   stroke: #fff;
   stroke-width: 3px;
 }
 
 circle.stopPoint {
-  fill: black;
-  stroke: #fff;
+  fill: white;
+  stroke: #2C90FE;
   stroke-width: 3px;
 }
 
@@ -31,6 +44,7 @@ circle.stopPoint {
 
 #cockpit {
   vertical-align: middle;
+  margin-top: -50px;
 }
 
 #cockpit > * {
