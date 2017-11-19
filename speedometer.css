@@ -1,6 +1,5 @@
 body {
     font: 16px arial;
-    background-color: #515151;
 }
 
 .unselectable {
@@ -14,16 +13,16 @@ body {
 /* css formats for the gauge */
 .gauge .domain {
     stroke-width: 2px;
-    stroke: #fff;
+    stroke: black;
 }
 
 .gauge .tick line {
-    stroke: #fff;
+    stroke: black;
     stroke-width: 2px;
 }
 
 .gauge line {
-    stroke: #fff;
+    stroke: black;
 }
 
 .gauge .arc, .gauge .cursor {
@@ -31,14 +30,14 @@ body {
 }
 
 .gauge .major {
-    fill: #fff;
+    fill: black;
     font-size: 20px;
     font-family: 'Play', verdana, sans-serif;
     font-weight: normal;
 }
 
 .gauge .indicator {
-    stroke: #EE3311;
+    stroke: #9D0019;
     fill: #000;
     stroke-width: 4px;
 }

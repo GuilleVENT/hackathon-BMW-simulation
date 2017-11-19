@@ -10,19 +10,19 @@ var gauge = iopctrl.arcslider()
     .indicator(iopctrl.defaultGaugeIndicator);
 gauge.axis().orient("in")
     .normalize(true)
-    .ticks(12)
+    .ticks(8)
     .tickSubdivide(3)
     .tickSize(10, 8, 10)
     .tickPadding(5)
     .scale(d3.scale.linear()
-            .domain([0, 160])
+            .domain([0,280])
             .range([-3*Math.PI/4, 3*Math.PI/4]));
 
-var segDisplay = iopctrl.segdisplay()
-    .width(80)
-    .digitCount(6)
-    .negative(false)
-    .decimals(0);
+// var segDisplay = iopctrl.segdisplay()
+//     .width(80)
+//     .digitCount(6)
+//     .negative(false)
+//     .decimals(0);
 
 // svg.append("g")
 //     .attr("class", "segdisplay")
