@@ -160,7 +160,7 @@ function transition(loop, callback, pathIndex) {
 		callback(pathIndex);
 		circle.transition()
 		.ease("linear")
-		.duration(path.getTotalLength() / speedFactor / speeds[pathIndex])
+		.duration((path.getTotalLength() || 0) / speedFactor / speeds[pathIndex])
 		.attrTween("transform", translateAlong(path))
 		.each("end", transition(loop, callback, ++pathIndex % paths.length));
 	}
@@ -171,8 +171,13 @@ function translateAlong(path) {
 	var l = path.getTotalLength();
 	return function(d, i, a) {
 		return function(t) {
-			var p = path.getPointAtLength(t * l);
-			return "translate(" + p.x + "," + p.y + ")";
+			try {
+                var p = path.getPointAtLength(t * l);
+                return "translate(" + p.x + "," + p.y + ")";
+			} catch (e) {
+				let lastSegment = points[points.length - 1];
+				return "translate(" + lastSegment[0][0] + "," + lastSegment[0][1] + ")";
+			}
 		};
 	};
 }
