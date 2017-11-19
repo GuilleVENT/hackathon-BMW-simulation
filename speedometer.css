@@ -38,7 +38,7 @@ body {
 
 .gauge .indicator {
     stroke: #9D0019;
-    fill: #000;
+    fill: white;
     stroke-width: 4px;
 }
 
